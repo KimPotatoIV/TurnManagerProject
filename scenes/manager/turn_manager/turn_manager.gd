@@ -57,7 +57,10 @@ func start_turn() -> void:
 	var current_unit: Node = units[current_turn_index]["unit"]
 	print("[TurnManager] Start turn: " + current_unit.name)
 	# 해당 유닛의 턴 시작 처리로 .start_turn()는 unit의 함수
-	current_unit.start_turn()
+	if current_unit.has_method("start_turn"):
+		current_unit.start_turn()
+	else:
+		print("[TurnManager] Unit" + current_unit.name + "does not have a start_turn() method.")
 
 ##################################################
 # 턴 종료 시 실행되는 함수
